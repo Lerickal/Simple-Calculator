@@ -49,7 +49,7 @@
                 document.getElementById("inputBox").value = button;
                 newLine = false;
             } else {
-                var currentValue = document.getElementById("inputbox").value;
+                var currentValue = document.getElementById("inputBox").value;
                 document.getElementById("inputBox").value = currentValue + button;
             }
         }
@@ -61,12 +61,13 @@
 
         function operatorPressed(operator) {
             currentOperator = operator;
-            value1 = parseInt(document.getElementById("inputBox")).value;
-            newLine = true;
+            value1 = parseFloat(document.getElementById("inputBox").value);
+            document.getElementById("inputBox").value += " " + operator + " ";
+            newLine = false;
         }
 
         function equalBtnPressed(){
-            var value2 = parseInt(document.getElementById("inputBox").value);
+            var value2 = parseFloat(document.getElementById("inputBox").value);
             var finalTotal;
 
             switch(currentOperator){
@@ -80,11 +81,11 @@
                     finalTotal = value1 * value2;
                     break;
                 case "/":
-                    finalTotal = value1 / value2;
+                    finalTotal = value2 !== 0 ? value1 / value2: "Error";
                     break;
             }
 
-            document.getElementById("inputBox").value = finalTotal;
+            document.getElementById("inputBox").value += " = " + finalTotal;
             value1 = 0;
             newLine = true;
         }
